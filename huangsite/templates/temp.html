@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  {{content}}
+
+  <div>
+    <input id="txt-input" type="text">
+    <button id="btn-send">Send</button>
+  </div>
+  <script>
+    let input = document.getElementById('txt-input');
+    let btnSend = document.getElementById('btn-send');
+    btnSend.onclick = e => {
+      let headers = new Headers({
+        'Content-Type': 'application/json'
+      });
+      fetch('/textSend', {
+        method: 'POST',
+        headers: headers,
+        body:  JSON.stringify({content: input.value})
+      }).then(data => {
+        console.log('data',data)
+      }).catch(err => {
+        console.log('error', err)
+      })
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "huangsite",
+  "version": "1.0.0",
+  "description": "website that includes editing, modifing, commenting, praising features",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch webpack.config.js watch --exec \"webpack --watch\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack -p"
+  },
+  "author": "lam",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/es6-promise": "0.0.33",
+    "@types/node": "^8.0.47",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "html-webpack-pug-plugin": "^0.2.1",
+    "node-sass": "^4.5.3",
+    "pug": "^2.0.0-rc.4",
+    "pug-loader": "^2.3.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "recursive-methods": "^1.0.5"
+  }
+}
