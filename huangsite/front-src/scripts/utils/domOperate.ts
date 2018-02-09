@@ -4,4 +4,4 @@ export const removeAll = (container: HTMLElement): HTMLElement => {
   }
   container.removeChild(container.firstChild);
   return removeAll(container);
-}
+};

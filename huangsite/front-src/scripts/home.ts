@@ -1,9 +1,11 @@
+const s = require("../styles/home.sass");
+
 export const home = () => {
-  console.log('home')
-}
-require('../styles/home.sass');
+  console.log("home");
+};
+
 const start = () => {
-  home()
-}
+  home();
+};
 
 start();

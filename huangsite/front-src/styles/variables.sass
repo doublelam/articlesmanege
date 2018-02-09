@@ -1,11 +1,10 @@
-
-@mixin fantasy-bac
-  background-color: #ffffff
+=fantasy-bac
+  background-color: #fff
   opacity: .8
 
-@mixin text($dark, $size)
+=text($dark, $size)
   color: lighten(#000, $dark)
   font-size: $size
 
-@mixin normal-txt
-  @include text(.2, 1.6rem)
+=normal-txt
+  +text(.2, 1.6rem)

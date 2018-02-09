@@ -57,45 +57,43 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 207);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */
+/******/ ({
+
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var getdom_1 = __webpack_require__(3);
-var ajax_1 = __webpack_require__(4);
-var domOperate_1 = __webpack_require__(5);
-var recursive_methods_1 = __webpack_require__(10);
+var recursive_methods_1 = __webpack_require__(68);
+var ajax_1 = __webpack_require__(71);
+var domOperate_1 = __webpack_require__(208);
+var getdom_1 = __webpack_require__(72);
 var OperateDatabase = /** @class */ (function () {
     function OperateDatabase() {
-        this.liContainer = getdom_1.ele('#list-container');
-        this.fetchBasesBtn = getdom_1.ele('#fetch-bases-btn');
+        this.liContainer = getdom_1.ele("#list-container");
+        this.fetchBasesBtn = getdom_1.ele("#fetch-bases-btn");
     }
     OperateDatabase.prototype.handleBtnClick = function () {
         var _this = this;
-        console.log('button', this.fetchBasesBtn);
+        console.log("button", this.fetchBasesBtn);
         this.fetchBasesBtn.onclick = function (e) {
             _this.getBases(function (data) {
                 _this.fillContainer(_this.liContainer, data.content);
-                console.log(recursive_methods_1.map(function (v) { return v + 'mm'; }, ['sss', 3, 4, 5, 6, 7]));
+                console.log(recursive_methods_1.map(function (v) { return v + "mm"; }, ["sss", 3, 4, 5, 6, 7]));
             });
         };
     };
     OperateDatabase.prototype.fillContainer = function (container, arr) {
         var ulContainer = domOperate_1.removeAll(container);
-        console.log();
         var listDoms = recursive_methods_1.map(function (v) {
-            var liDom = document.createElement('li');
+            var liDom = document.createElement("li");
             liDom.appendChild(document.createTextNode(String(v)));
             ulContainer.appendChild(liDom);
             return liDom;
@@ -103,8 +101,8 @@ var OperateDatabase = /** @class */ (function () {
         console.log(listDoms);
     };
     OperateDatabase.prototype.getBases = function (cb) {
-        ajax_1.post('/post/list_bases').then(function (data) {
-            console.log('data2', data);
+        ajax_1.post("/post/list_bases").then(function (data) {
+            console.log("data2", data);
             cb(data);
         });
     };
@@ -121,67 +119,8 @@ main();
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-exports.__esModule = true;
-exports.ele = function (query) { return document.querySelector(query); };
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-exports.ajax = function (url, opt) {
-    return fetch(url, opt).then(function (response) {
-        var _res = response.clone();
-        return _res.blob().then(function (d) {
-            return (CONTENT_MAP[d.type] ||
-                CONTENT_MAP['otherwise'])(response.clone());
-        });
-    });
-};
-var request = function (method, url, params) {
-    var headers = new Headers({
-        'Content-Type': 'application/json'
-    });
-    var option = {
-        method: method,
-        credentials: 'include',
-        headers: headers
-    };
-    if (params) {
-        option.body = JSON.stringify(params);
-    }
-    console.log('option', option);
-    return exports.ajax(url, option).then(function (data) {
-        if (!data.success) {
-            console.error('Got data with error: ', data.error);
-            return Promise.reject(data.error);
-        }
-        return data;
-    })["catch"](function (e) {
-        console.error('Get error from fetch: ', e);
-        return Promise.reject(e);
-    });
-};
-exports.post = function (url, params) { return request('POST', url, params); };
-exports.get = function (url, params) { return request('GET', url, params); };
-var CONTENT_MAP = {
-    'otherwise': function (res) {
-        var json = res.clone().json();
-        return json;
-    }
-};
-
-
-/***/ }),
-/* 5 */
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -197,11 +136,8 @@ exports.removeAll = function (container) {
 
 
 /***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
+
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -210,12 +146,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(11));
-__export(__webpack_require__(12));
+__export(__webpack_require__(69));
+__export(__webpack_require__(70));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 11 */
+
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -256,7 +193,8 @@ exports.fibonacciArr = function (n) {
 //# sourceMappingURL=sequence.js.map
 
 /***/ }),
-/* 12 */
+
+/***/ 70:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -296,7 +234,7 @@ exports.sort = function (func, list) {
     var rightVals = exports.sort(func, exports.filter(function (v) {
         return !func(list[0], v);
     }, list.slice(1)));
-    return leftVals.concat(midVal).concat(rightVals);
+    return leftVals.concat([midVal]).concat(rightVals);
 };
 /**
  *
@@ -327,7 +265,7 @@ exports.whileis = function (func, list) {
         if (!fun(li[0]) || li.length <= 0) {
             return sumArr;
         }
-        return whileisI(sumArr.concat(li[0]), fun, li.slice(1));
+        return whileisI(sumArr.concat([li[0]]), fun, li.slice(1));
     };
     return whileisI([], func, list);
 };
@@ -360,7 +298,7 @@ exports.sorter = function (func, list) {
     }
     var sorterI = function (sumArr, fun, li) {
         var extremeVal = exports.extreme(function (a, b) { return !fun(a, b); }, li);
-        var val = sumArr.concat(extremeVal);
+        var val = sumArr.concat([extremeVal]);
         if (li.length <= 1) {
             return val;
         }
@@ -378,7 +316,7 @@ exports.map = function (func, list) {
         return [];
     }
     var mapI = function (sumArr, index, fun, li) {
-        var currentEle = sumArr.concat(fun(li[0], index));
+        var currentEle = sumArr.concat([fun(li[0], index)]);
         if (li.length <= 1) {
             return currentEle;
         }
@@ -416,18 +354,21 @@ exports.getType = function (param) {
  * @param a First value
  * @param b Second value
  */
-exports.congruence = function (a, b) {
+exports.isCongruence = function (a, b) {
     var typeFirst = exports.getType(a);
     if (typeFirst !== exports.getType(b)) {
         return false;
     }
     var TYPE_METHODS_MAP = {
         array: function (x, y) {
+            if (x === y) {
+                return true;
+            }
             if (x.length !== y.length) {
                 return false;
             }
             var ifEqual = function (pre, nex) {
-                var compareFirst = exports.congruence(pre[0], nex[0]);
+                var compareFirst = exports.isCongruence(pre[0], nex[0]);
                 if (pre.length <= 1) {
                     return compareFirst;
                 }
@@ -436,9 +377,15 @@ exports.congruence = function (a, b) {
             return ifEqual(x, y);
         },
         function: function (x, y) {
+            if (x === y) {
+                return true;
+            }
             return String(x) === String(y);
         },
         object: function (x, y) {
+            if (x === y) {
+                return true;
+            }
             var xKeys = Object.keys(x);
             var yKeys = Object.keys(y);
             if (xKeys.length !== yKeys.length) {
@@ -449,7 +396,7 @@ exports.congruence = function (a, b) {
                 if (keys.length <= 0) {
                     return true;
                 }
-                var compareFirst = exports.congruence(x[keys[0]], y[keys[0]]);
+                var compareFirst = exports.isCongruence(x[keys[0]], y[keys[0]]);
                 if (keys.length <= 1) {
                     return compareFirst;
                 }
@@ -461,7 +408,134 @@ exports.congruence = function (a, b) {
     };
     return (TYPE_METHODS_MAP[typeFirst] || TYPE_METHODS_MAP.otherwise)(a, b);
 };
+/**
+ * A function would reverse the input list
+ *
+ * @param list list
+ * @returns return a list
+ */
+exports.reverse = function (list) {
+    if (!list.length) {
+        return list;
+    }
+    var reverseI = function (outputArr, li) {
+        var currentEle = [li[0]].concat(outputArr);
+        if (li.length <= 1) {
+            return currentEle;
+        }
+        return reverseI(currentEle, li.slice(1));
+    };
+    return reverseI([], list);
+};
+/**
+ * A function
+ *
+ * @param gap
+ * @param func
+ * @param list
+ */
+exports.fragment = function (gap, func, list) {
+    if (!list.length) {
+        return [];
+    }
+    if (gap <= 0) {
+        var error = new Error();
+        error.message = "The first parameter should be a positive number";
+        throw error;
+    }
+    var fragmentI = function (arr, index, gapN, fun, li) {
+        var frag = fun(li.slice(0, gapN), index);
+        var sumArr = arr.concat([frag]);
+        if (li.length <= gap) {
+            return sumArr;
+        }
+        return fragmentI(sumArr, index + 1, gapN, fun, li.slice(gapN));
+    };
+    return fragmentI([], 0, gap, func, list);
+};
+/**
+ * A function return the deduplicated value
+ *
+ * @param list
+ */
+exports.deduplicate = function (list) {
+    if (!list.length) {
+        return [];
+    }
+    var deduplicateI = function (sumArr, li) {
+        var filtedArr = exports.filter(function (v) { return !exports.isCongruence(li[0], v); }, li.slice(1));
+        var arr = sumArr.concat(li[0]);
+        if (li.length <= 1) {
+            return arr;
+        }
+        return deduplicateI(arr, filtedArr);
+    };
+    return deduplicateI([], list);
+};
 //# sourceMappingURL=list-methods.js.map
 
+/***/ }),
+
+/***/ 71:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+exports.ajax = function (url, opt) {
+    return fetch(url, opt).then(function (response) {
+        var resI = response.clone();
+        return resI.blob().then(function (d) {
+            return (CONTENT_MAP[d.type] ||
+                CONTENT_MAP.otherwise)(response.clone());
+        });
+    });
+};
+var request = function (method, url, params) {
+    var headers = new Headers({
+        "Content-Type": "application/json"
+    });
+    var option = {
+        credentials: "include",
+        headers: headers,
+        method: method
+    };
+    if (params) {
+        option.body = JSON.stringify(params);
+    }
+    console.log("option", option);
+    return exports.ajax(url, option).then(function (data) {
+        if (!data.success) {
+            console.error("Got data with error: ", data.error);
+            return Promise.reject(data.error);
+        }
+        return data;
+    })["catch"](function (e) {
+        console.error("Get error from fetch: ", e);
+        return Promise.reject(e);
+    });
+};
+exports.post = function (url, params) { return request("POST", url, params); };
+exports.get = function (url, params) { return request("GET", url, params); };
+var CONTENT_MAP = {
+    otherwise: function (res) {
+        var json = res.clone().json();
+        return json;
+    }
+};
+
+
+/***/ }),
+
+/***/ 72:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+exports.ele = function (query) { return document.querySelector(query); };
+
+
 /***/ })
-/******/ ]);
+
+/******/ });

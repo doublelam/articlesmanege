@@ -4,18 +4,21 @@
 .home-header
   position: fixed
   width: 100%
+
   .fake-fantasy-back
-    @include fantasy-bac
-    position: absolute
-    width: 100%
+    +fantasy-bac
+
     height: 100%
     left: 0
+    position: absolute
     top: 0
+    width: 100%
+
   .item-container
-    position: relative
     display: flex
+    position: relative
 
     .item
       flex: 1
-      text-align: center
       padding: 1rem
+      text-align: center

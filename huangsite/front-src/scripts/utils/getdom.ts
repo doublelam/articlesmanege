@@ -1,2 +1,2 @@
 export const ele = (query: string):
-  Element => document.querySelector(query)
+  Element => document.querySelector(query);

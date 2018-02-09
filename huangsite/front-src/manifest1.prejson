@@ -1,0 +1,11 @@
+ -{
+ 	name: "Webm Maker",
+ 	display: "fullscreen",
+ 	orientation: "landscape",
+ 	short_name: "Webm Maker",
+ 	icons: [{
+ 		src: require("./images/images.jpeg"),
+ 		sizes: "48x48",
+ 		type: "image/png"
+ 	}]
+ }

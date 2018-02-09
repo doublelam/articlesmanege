@@ -1,0 +1,30 @@
+@import common
+
+body
+
+  .fake-images-contaner
+    height: 100%
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 0
+
+    .fake-img
+      background-color: rgba(0, 0, 0, 0)
+      height: 100%
+      left: 0
+      opacity: 0.4
+      position: absolute
+      width: 100%
+
+      &.previous-img
+        filter: sepia(100%)
+
+  .float-add-btn
+    bottom: 20px
+    display: inline-block
+    position: fixed
+    right: 20px
+    z-index: 1
+
