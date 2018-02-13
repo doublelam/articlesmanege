@@ -16,7 +16,15 @@ export interface Duration {
   duration: number;
 }
 
-export type WorkerVideoData = Pick<VideoPlayerModalProps, "progress" | "videoData">;
+export interface PostJson {
+  clientTime: string;
+  clientName?: string;
+  content?: { [key: string]: any };
+}
+
+export interface WorkerVideoData extends Pick<VideoPlayerModalProps, "progress" | "videoData"> {
+  blob?: Blob;
+}
 export type Type<T> = T;
 export type ListType<T> = T[];
 export type ScreenMode = "HORIZONTAL" | "VERTICAL";

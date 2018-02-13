@@ -4,6 +4,7 @@ import { Main } from "./main";
 import { Login } from "./pages/login";
 import { NotFound } from "./pages/not-found";
 import { VideoMaker } from "./pages/video-maker";
+import { VideosList } from "./pages/videos-list";
 import { Ttes } from "./test";
 export const RootRoute = (): JSX.Element => {
   return (
@@ -20,7 +21,9 @@ export const MainRoute = (): JSX.Element => {
     <Switch>
       <Route path="/test" component={Ttes} />
       <Route path="/login" component={Login} />
-      <Route path="/make-video" component={VideoMaker} />
+      <Route path="/make-video" history={history} component={VideoMaker} />
+      <Route path="/video-list" component={VideosList} />
+      <Redirect from="/" to="/make-video" />
       <Route path="/" component={NotFound} />
     </Switch>
   );

@@ -5,7 +5,8 @@
     "lib": [
       "dom",
       "es2015",
-      "esnext"
+      "esnext",
+      "webworker",
     ]
   }
 }

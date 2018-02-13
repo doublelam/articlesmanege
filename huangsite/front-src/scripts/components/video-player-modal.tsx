@@ -41,8 +41,7 @@ export class VideoPlayerModal extends React.Component<VideoPlayerModalProps> {
         </div>
       </div>;
     return <Dialog
-      onRequestClose={this.props.onRequestClose}
-      open={this.props.open}
+      {...this.props}
       contentStyle={{
         left: "50%",
         position: "absolute",

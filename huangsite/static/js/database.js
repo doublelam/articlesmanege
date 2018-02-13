@@ -82,11 +82,9 @@ var OperateDatabase = /** @class */ (function () {
     }
     OperateDatabase.prototype.handleBtnClick = function () {
         var _this = this;
-        console.log("button", this.fetchBasesBtn);
         this.fetchBasesBtn.onclick = function (e) {
             _this.getBases(function (data) {
                 _this.fillContainer(_this.liContainer, data.content);
-                console.log(recursive_methods_1.map(function (v) { return v + "mm"; }, ["sss", 3, 4, 5, 6, 7]));
             });
         };
     };
@@ -98,11 +96,9 @@ var OperateDatabase = /** @class */ (function () {
             ulContainer.appendChild(liDom);
             return liDom;
         }, arr);
-        console.log(listDoms);
     };
     OperateDatabase.prototype.getBases = function (cb) {
         ajax_1.post("/post/list_bases").then(function (data) {
-            console.log("data2", data);
             cb(data);
         });
     };
@@ -486,8 +482,9 @@ exports.ajax = function (url, opt) {
     return fetch(url, opt).then(function (response) {
         var resI = response.clone();
         return resI.blob().then(function (d) {
-            return (CONTENT_MAP[d.type] ||
+            var data = (CONTENT_MAP[d.type] ||
                 CONTENT_MAP.otherwise)(response.clone());
+            return data;
         });
     });
 };
@@ -503,15 +500,12 @@ var request = function (method, url, params) {
     if (params) {
         option.body = JSON.stringify(params);
     }
-    console.log("option", option);
     return exports.ajax(url, option).then(function (data) {
         if (!data.success) {
-            console.error("Got data with error: ", data.error);
-            return Promise.reject(data.error);
+            Promise.reject(data.error);
         }
         return data;
     })["catch"](function (e) {
-        console.error("Get error from fetch: ", e);
         return Promise.reject(e);
     });
 };

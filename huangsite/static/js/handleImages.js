@@ -77,13 +77,13 @@ var HandleImages = /** @class */ (function () {
         this.it = self;
     }
     HandleImages.prototype.start = function () {
-        self.onmessage = this.onMessage.bind(this);
+        this.it.onmessage = this.onMessage.bind(this);
     };
     HandleImages.prototype.onMessage = function (e) {
         var video = this.getWebmVideo(e.data);
-        console.log("video", video);
-        var url = self.URL.createObjectURL(video);
+        var url = this.it.URL.createObjectURL(video);
         var data = {
+            blob: video,
             progress: 100,
             videoData: {
                 dataURL: url,

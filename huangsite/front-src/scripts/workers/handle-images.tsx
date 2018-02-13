@@ -11,14 +11,14 @@ class HandleImages {
     this.it = self;
   }
   public start(): void {
-    self.onmessage = this.onMessage.bind(this);
+    this.it.onmessage = this.onMessage.bind(this);
   }
 
   private onMessage(e: WorkerMessageEvent): void {
     const video = this.getWebmVideo(e.data);
-    console.log("video", video);
-    const url = self.URL.createObjectURL(video);
+    const url = this.it.URL.createObjectURL(video);
     const data: WorkerVideoData = {
+      blob: video,
       progress: 100,
       videoData: {
         dataURL: url,
@@ -42,7 +42,7 @@ class HandleImages {
       };
       this.it.postMessage(pData);
     });
-    const video: string = whammyVideo.compile();
+    const video: Blob = whammyVideo.compile();
     return video;
   }
 

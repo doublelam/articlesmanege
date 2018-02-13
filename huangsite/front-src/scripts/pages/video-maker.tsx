@@ -5,6 +5,7 @@ import {
   CardHeader,
   Dialog,
   DropDownMenu,
+  FlatButton,
   FloatingActionButton,
   FontIcon,
   IconButton,
@@ -25,6 +26,7 @@ import {
   NavigationMoreVert,
 } from "material-ui/svg-icons";
 import * as React from "react";
+import { withRouter } from "react-router";
 import { SetStylesModal } from "../components/set-styles-modal";
 import { VideoPlayerModal } from "../components/video-player-modal";
 import {
@@ -32,7 +34,7 @@ import {
   ListType,
   WorkerVideoData,
 } from "../types/types";
-import { post } from "../utils/ajax";
+import { ajax, post } from "../utils/ajax";
 import { domRect } from "../utils/dom-rect";
 import { ImagesManager } from "../webmmaker/images-manager";
 import { OperateBit } from "../webmmaker/images-manager";
@@ -58,6 +60,7 @@ interface VideoMakerState {
   playerProgress: number;
   hasData: boolean;
   dataURL: string;
+  blob: Blob;
 }
 interface DomStyles {
   raisedBtn: React.CSSProperties;
@@ -78,7 +81,7 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
   private container: HTMLElement;
   private imagesManager: ImagesManager;
   private domStyles: DomStyles;
-  private worker: any;
+  private worker: Worker;
   private MODE_MAP: {
     DRAW: () => CanvasDrawable;
     ERASE: () => CanvasDrawable;
@@ -87,6 +90,7 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
     super(props);
     this.imagesManager = new ImagesManager();
     this.state = {
+      blob: new Blob(),
       containerHeight: "",
       dataURL: "",
       durationDu: DEFAULT_DURATIONS[0].duration,
@@ -107,7 +111,6 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
       playFloatBtn: { position: "fixed", right: 20, bottom: 80, zIndex: 1 },
       raisedBtn: { margin: 0, minWidth: "18vw" },
     };
-    this.worker = new Worker("static/js/handleImages.js");
   }
 
   public render(): JSX.Element {
@@ -214,6 +217,23 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
           <AvPlayArrow />
         </FloatingActionButton>
         <VideoPlayerModal
+          actions={[
+            <FlatButton
+              label="Cancel"
+              primary
+              onClick={e => this.switchModalOpen("playerModalOpen", "CLOSE")}
+            />,
+            <FlatButton
+              label="Post"
+              primary
+              onClick={e => {
+                this.postVideo(this.state.hasData, this.state.dataURL, this.state.blob, data => {
+                  const props: any = this.props;
+                  props.history.push("/video-list");
+                });
+              }}
+            />,
+          ]}
           open={this.state.playerModalOpen}
           onRequestClose={ev => {
             this.initiatePlayerModal();
@@ -267,7 +287,12 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
       this.resetStrokeStyle();
       this.drawOrErase();
       this.preserveCurrent();
+      this.setWorker();
     });
+  }
+
+  public componentWillUnmount() {
+    this.terminateWorker();
   }
 
   private getDoms(): void {
@@ -314,6 +339,22 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
     this.preserveCurrent(this.clearAndInsert);
   }
 
+  private postVideo(hasData: boolean, dataURL: string, blob: Blob, callback?: (data) => any): void {
+    if (!hasData) {
+      return;
+    }
+    const formData = new FormData();
+    formData.append("videoFile", blob);
+    ajax("/make_video_post/send_video_blob", {
+      body: formData,
+      method: "POST",
+    }).then(data => {
+      if (callback) {
+        callback(data);
+      }
+    });
+  }
+
   private switchDrawOrErase(): void {
     const currentMode = this.state.paintMode;
     this.setState({
@@ -343,6 +384,7 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
         this.worker.onmessage = (event: MessageEvent) => {
           const eData: WorkerVideoData = event.data;
           this.setState({
+            blob: eData.blob,
             dataURL: eData.videoData.dataURL,
             hasData: eData.videoData.hasData,
             playerProgress: eData.progress,
@@ -397,6 +439,13 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
     });
   }
 
+  private setWorker(): void {
+    this.worker = new Worker("static/js/handleImages.js");
+  }
+
+  private terminateWorker(): void {
+    this.worker.terminate();
+  }
   private preserveCurrent(callback?: (val?) => any): void {
     const pageIndex = this.state.pageIndex;
     const imgBase64 = this.drawCanvas.getCanvasBase64("image/webp", 1);
