@@ -7,7 +7,7 @@ import hashlib
 
 
 def send_video_blob(req):
-    BASE_PATH = 'huangsite/static/'
+    BASE_PATH = './huangsite/static/'
     folder = 'videos'
     file = req.FILES['videoFile'].read()
     hash_name = hashlib.md5(file).hexdigest()
