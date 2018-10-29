@@ -60,23 +60,23 @@
 /******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 212);
+/******/ 	return __webpack_require__(__webpack_require__.s = 213);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 212:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
 /* require sass */
-__webpack_require__(213);
-var canvas_drawable_1 = __webpack_require__(73);
-var getdom_1 = __webpack_require__(72);
-var reset_canvas_1 = __webpack_require__(75);
-var reset_container_1 = __webpack_require__(214);
+__webpack_require__(214);
+var canvas_drawable_1 = __webpack_require__(46);
+var getdom_1 = __webpack_require__(76);
+var reset_canvas_1 = __webpack_require__(77);
+var reset_container_1 = __webpack_require__(215);
 var WebmMaker = /** @class */ (function () {
     function WebmMaker() {
         this.getEles();
@@ -112,14 +112,14 @@ webmmaker.main();
 
 /***/ }),
 
-/***/ 213:
+/***/ 214:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 214:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -154,23 +154,12 @@ exports.resetContainer = function (dom) {
 
 /***/ }),
 
-/***/ 72:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-exports.ele = function (query) { return document.querySelector(query); };
-
-
-/***/ }),
-
-/***/ 73:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__judge_end__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__judge_end__ = __webpack_require__(47);
 
 class CanvasDrawable {
     constructor(canvasContext, opt = {
@@ -311,7 +300,7 @@ class CanvasDrawable {
 
 /***/ }),
 
-/***/ 74:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -328,7 +317,18 @@ const ifMobile = ifHasTouch();
 
 /***/ }),
 
-/***/ 75:
+/***/ 76:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+exports.ele = function (query) { return document.querySelector(query); };
+
+
+/***/ }),
+
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -60,25 +60,25 @@
 /******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 209);
+/******/ 	return __webpack_require__(__webpack_require__.s = 212);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 209:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var index_1 = __webpack_require__(210);
+var canvas_drawable_1 = __webpack_require__(46);
 var canvas = document.getElementById("canvas");
 var erase = document.getElementById("erase");
 var draw = document.getElementById("draw");
 var getImage = document.getElementById("getimage");
 var clearAll = document.getElementById("clearall");
 var getBlob = document.getElementById("getblob");
-var drawable = new index_1.CanvasDrawable(canvas.getContext("2d"));
+var drawable = new canvas_drawable_1.CanvasDrawable(canvas.getContext("2d"));
 erase.onclick = function (e) {
     drawable.enerase();
 };
@@ -100,19 +100,18 @@ getBlob.onclick = function (e) {
 
 /***/ }),
 
-/***/ 210:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 46:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__judge_end__ = __webpack_require__(47);
 
-exports.__esModule = true;
-var judge_end_1 = __webpack_require__(211);
-var CanvasDrawable = /** @class */ (function () {
-    function CanvasDrawable(canvasContext, opt) {
-        if (opt === void 0) { opt = {
+class CanvasDrawable {
+    constructor(canvasContext, opt = {
             color: "rgba(0,0,0,.5)",
-            width: 1
-        }; }
+            width: 1,
+        }) {
         this.lastPoint = [0, 0];
         this.lastEndPoint = [0, 0];
         this.paddingAndBorder = [0, 0];
@@ -125,64 +124,48 @@ var CanvasDrawable = /** @class */ (function () {
         this.bandMethods();
         this.getCanvasPaddingAndBorder(canvasContext);
     }
-    CanvasDrawable.prototype.native = function (type) {
-        var opt = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            opt[_i - 1] = arguments[_i];
-        }
-        (_a = this.canvasContext)[type].apply(_a, opt);
+    native(type, ...opt) {
+        this.canvasContext[type](...opt);
         return this;
-        var _a;
-    };
-    CanvasDrawable.prototype.nativeContext = function () {
+    }
+    nativeContext() {
         return this.canvasContext;
-    };
-    CanvasDrawable.prototype.setStyle = function (option) {
+    }
+    setStyle(option) {
         this.pointStyle = option;
         return this;
-    };
-    CanvasDrawable.prototype.getStyle = function () {
+    }
+    getStyle() {
         return this.pointStyle;
-    };
-    CanvasDrawable.prototype.cleanAll = function () {
+    }
+    cleanAll() {
         this.canvasContext.clearRect(0, 0, this.innerWidthAndHeight[0], this.innerWidthAndHeight[1]);
-    };
-    CanvasDrawable.prototype.getCanvasBase64 = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        return (_a = this.canvasContext.canvas).toDataURL.apply(_a, args);
-        var _a;
-    };
-    CanvasDrawable.prototype.getCanvasBlob = function () {
-        var _this = this;
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        return new Promise(function (resolve, reject) {
-            (_a = _this.canvasContext.canvas).toBlob.apply(_a, [function (blob) {
-                    resolve(blob);
-                }].concat(args));
-            var _a;
+    }
+    getCanvasBase64(...args) {
+        return this.canvasContext.canvas.toDataURL(...args);
+    }
+    getCanvasBlob(...args) {
+        return new Promise((resolve, reject) => {
+            this.canvasContext.canvas.toBlob((blob) => {
+                resolve(blob);
+            }, ...args);
         });
-    };
-    CanvasDrawable.prototype.enerase = function () {
+    }
+    enerase() {
         this.pointMode = "ERASE";
         return this;
-    };
-    CanvasDrawable.prototype.endraw = function () {
+    }
+    endraw() {
         this.pointMode = "DRAW";
         return this;
-    };
-    CanvasDrawable.prototype.setCanvasStroke = function () {
+    }
+    setCanvasStroke() {
         this.canvasContext.strokeStyle = this.pointStyle.color;
         this.canvasContext.lineWidth = this.pointStyle.width;
-    };
-    CanvasDrawable.prototype.getCanvasPaddingAndBorder = function (canvasContext) {
-        var styles = getComputedStyle(canvasContext.canvas);
-        var canvasRect = canvasContext.canvas.getBoundingClientRect();
+    }
+    getCanvasPaddingAndBorder(canvasContext) {
+        const styles = getComputedStyle(canvasContext.canvas);
+        const canvasRect = canvasContext.canvas.getBoundingClientRect();
         this.domPosition = [canvasRect.left, canvasRect.top];
         this.paddingAndBorder = [
             parseFloat(styles.paddingLeft) + parseFloat(styles.borderLeftWidth),
@@ -192,64 +175,61 @@ var CanvasDrawable = /** @class */ (function () {
             this.canvasContext.canvas.clientWidth,
             this.canvasContext.canvas.clientHeight,
         ];
-    };
-    CanvasDrawable.prototype.recalculateCoordination = function (coordinate) {
+    }
+    recalculateCoordination(coordinate) {
         return [
             coordinate[0] - this.domPosition[0] - this.paddingAndBorder[0],
             coordinate[1] - this.domPosition[1] - this.paddingAndBorder[1],
         ];
-    };
-    CanvasDrawable.prototype.bandMethods = function () {
-        var _this = this;
-        var can = this.canvasContext.canvas;
-        if (judge_end_1.ifMobile) {
-            can.ontouchstart = function (e) {
-                var reCoordinate = _this.recalculateCoordination([e.touches[0].clientX, e.touches[0].clientY]);
-                _this.touched(reCoordinate[0], reCoordinate[1]);
+    }
+    bandMethods() {
+        const can = this.canvasContext.canvas;
+        if (__WEBPACK_IMPORTED_MODULE_0__judge_end__["a" /* ifMobile */]) {
+            can.ontouchstart = e => {
+                const reCoordinate = this.recalculateCoordination([e.touches[0].clientX, e.touches[0].clientY]);
+                this.touched(reCoordinate[0], reCoordinate[1]);
             };
-            can.ontouchmove = function (e) {
-                var reCoordinate = _this.recalculateCoordination([e.touches[0].clientX, e.touches[0].clientY]);
-                _this.moveWhenErase(reCoordinate[0], reCoordinate[1]);
-                _this.moveWhenDraw(reCoordinate[0], reCoordinate[1]);
+            can.ontouchmove = e => {
+                const reCoordinate = this.recalculateCoordination([e.touches[0].clientX, e.touches[0].clientY]);
+                this.moveWhenErase(reCoordinate[0], reCoordinate[1]);
+                this.moveWhenDraw(reCoordinate[0], reCoordinate[1]);
             };
             return this;
         }
-        can.onmousedown = function (e) {
-            var reCoordinate = _this.recalculateCoordination([e.clientX, e.clientY]);
-            _this.touched(reCoordinate[0], reCoordinate[1]);
+        can.onmousedown = e => {
+            const reCoordinate = this.recalculateCoordination([e.clientX, e.clientY]);
+            this.touched(reCoordinate[0], reCoordinate[1]);
         };
-        can.onmousemove = function (e) {
+        can.onmousemove = e => {
             if (e.buttons <= 0) {
                 return;
             }
-            var reCoordinate = _this.recalculateCoordination([e.clientX, e.clientY]);
-            _this.moveWhenErase(reCoordinate[0], reCoordinate[1]);
-            _this.moveWhenDraw(reCoordinate[0], reCoordinate[1]);
+            const reCoordinate = this.recalculateCoordination([e.clientX, e.clientY]);
+            this.moveWhenErase(reCoordinate[0], reCoordinate[1]);
+            this.moveWhenDraw(reCoordinate[0], reCoordinate[1]);
         };
         return this;
-    };
-    CanvasDrawable.prototype.touched = function (x, y) {
+    }
+    touched(x, y) {
         this.lastPoint = [x, y];
         this.lastEndPoint = [x, y];
         this.setCanvasStroke();
-    };
-    CanvasDrawable.prototype.moveWhenErase = function (x, y, width) {
-        if (width === void 0) { width = 10; }
+    }
+    moveWhenErase(x, y, width = 10) {
         if (this.pointMode !== "ERASE") {
             return;
         }
-        var halfSide = width / 2;
-        var startPoint = [x - halfSide, y - halfSide];
+        const halfSide = width / 2;
+        const startPoint = [x - halfSide, y - halfSide];
         this.canvasContext.clearRect(startPoint[0], startPoint[1], width, width);
-    };
-    CanvasDrawable.prototype.moveWhenDraw = function (x, y, scale) {
-        if (scale === void 0) { scale = this.drawScale; }
+    }
+    moveWhenDraw(x, y, scale = this.drawScale) {
         if (this.pointMode !== "DRAW") {
             return;
         }
         this.canvasContext.beginPath();
         this.canvasContext.moveTo(this.lastEndPoint[0], this.lastEndPoint[1]);
-        var endPoint = [
+        const endPoint = [
             (x - this.lastPoint[0]) * scale + this.lastEndPoint[0],
             (y - this.lastPoint[1]) * scale + this.lastEndPoint[1],
         ];
@@ -258,28 +238,28 @@ var CanvasDrawable = /** @class */ (function () {
         this.canvasContext.closePath();
         this.lastPoint = [x, y];
         this.lastEndPoint = endPoint;
-    };
-    return CanvasDrawable;
-}());
-exports.CanvasDrawable = CanvasDrawable;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["CanvasDrawable"] = CanvasDrawable;
 
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 211:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 47:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-exports.__esModule = true;
-var ifHasTouch = function () {
+const ifHasTouch = () => {
     if (window.ontouchstart !== void 0) {
         return true;
     }
     return false;
 };
-exports.ifMobile = ifHasTouch();
+const ifMobile = ifHasTouch();
+/* harmony export (immutable) */ __webpack_exports__["a"] = ifMobile;
 
+//# sourceMappingURL=judge-end.js.map
 
 /***/ })
 

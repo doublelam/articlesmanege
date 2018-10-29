@@ -34,7 +34,7 @@ import {
   ListType,
   WorkerVideoData,
 } from "../types/types";
-import { ajax, post } from "../utils/ajax";
+import { ajax, get } from "../utils/ajax";
 import { domRect } from "../utils/dom-rect";
 import { ImagesManager } from "../webmmaker/images-manager";
 import { OperateBit } from "../webmmaker/images-manager";
@@ -476,7 +476,7 @@ export class VideoMaker extends React.Component<{}, VideoMakerState> {
   }
 
   private getStrokeStyles(): void {
-    post("/make_video_post/get_stroke_styles").then(data => {
+    get("/make_video_post/get_stroke_styles").then(data => {
       this.setState({
         durationDu: data.content.durations[0].duration,
         durations: data.content.durations,

@@ -29,7 +29,7 @@ export class DrawerMenus extends React.Component<DrawerMenusProps> {
     return (
       <nav>
         <Menu
-          onItemClick={e => {
+          onChange={e => {
             this.props.switchDrawer(false);
           }}
         >

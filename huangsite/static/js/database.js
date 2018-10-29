@@ -60,21 +60,21 @@
 /******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 207);
+/******/ 	return __webpack_require__(__webpack_require__.s = 210);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 207:
+/***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var recursive_methods_1 = __webpack_require__(68);
-var ajax_1 = __webpack_require__(71);
-var domOperate_1 = __webpack_require__(208);
-var getdom_1 = __webpack_require__(72);
+var recursive_methods_1 = __webpack_require__(73);
+var ajax_1 = __webpack_require__(60);
+var domOperate_1 = __webpack_require__(211);
+var getdom_1 = __webpack_require__(76);
 var OperateDatabase = /** @class */ (function () {
     function OperateDatabase() {
         this.liContainer = getdom_1.ele("#list-container");
@@ -116,7 +116,7 @@ main();
 
 /***/ }),
 
-/***/ 208:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,7 +133,56 @@ exports.removeAll = function (container) {
 
 /***/ }),
 
-/***/ 68:
+/***/ 60:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+exports.ajax = function (url, opt) {
+    return fetch(url, opt).then(function (response) {
+        var resI = response.clone();
+        return resI.blob().then(function (d) {
+            var data = (CONTENT_MAP[d.type] ||
+                CONTENT_MAP.otherwise)(response.clone());
+            return data;
+        });
+    });
+};
+var request = function (method, url, params) {
+    var headers = new Headers({
+        "Content-Type": "application/json"
+    });
+    var option = {
+        credentials: "include",
+        headers: headers,
+        method: method
+    };
+    if (params) {
+        option.body = JSON.stringify(params);
+    }
+    return exports.ajax(url, option).then(function (data) {
+        if (!data.success) {
+            Promise.reject(data.error);
+        }
+        return data;
+    })["catch"](function (e) {
+        return Promise.reject(e);
+    });
+};
+exports.post = function (url, params) { return request("POST", url, params); };
+exports.get = function (url, params) { return request("GET", url, params); };
+var CONTENT_MAP = {
+    otherwise: function (res) {
+        var json = res.clone().json();
+        return json;
+    }
+};
+
+
+/***/ }),
+
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142,13 +191,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(69));
-__export(__webpack_require__(70));
+__export(__webpack_require__(74));
+__export(__webpack_require__(75));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 69:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -190,7 +239,7 @@ exports.fibonacciArr = function (n) {
 
 /***/ }),
 
-/***/ 70:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -472,56 +521,7 @@ exports.deduplicate = function (list) {
 
 /***/ }),
 
-/***/ 71:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-exports.ajax = function (url, opt) {
-    return fetch(url, opt).then(function (response) {
-        var resI = response.clone();
-        return resI.blob().then(function (d) {
-            var data = (CONTENT_MAP[d.type] ||
-                CONTENT_MAP.otherwise)(response.clone());
-            return data;
-        });
-    });
-};
-var request = function (method, url, params) {
-    var headers = new Headers({
-        "Content-Type": "application/json"
-    });
-    var option = {
-        credentials: "include",
-        headers: headers,
-        method: method
-    };
-    if (params) {
-        option.body = JSON.stringify(params);
-    }
-    return exports.ajax(url, option).then(function (data) {
-        if (!data.success) {
-            Promise.reject(data.error);
-        }
-        return data;
-    })["catch"](function (e) {
-        return Promise.reject(e);
-    });
-};
-exports.post = function (url, params) { return request("POST", url, params); };
-exports.get = function (url, params) { return request("GET", url, params); };
-var CONTENT_MAP = {
-    otherwise: function (res) {
-        var json = res.clone().json();
-        return json;
-    }
-};
-
-
-/***/ }),
-
-/***/ 72:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

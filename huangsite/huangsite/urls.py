@@ -21,6 +21,7 @@ from . import getpost
 from .common import handle_request as hr
 from .operate_database.op_base import list_bases
 from .apis.apis_urls import URLPATTERNS
+from .apis.common_apis import URLPATTERNS as COMMON_URLPATTERNS
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     url(r'^textSend', hr.handle_request('post', getpost.get_post)),
     url(r'^post/list_bases', hr.handle_request('post', list_bases)),
     url(r'^make_video_post/', include(URLPATTERNS)),
+    url(r'^common_apis/', include(COMMON_URLPATTERNS)),
     url(r'^', view.default),
 ]

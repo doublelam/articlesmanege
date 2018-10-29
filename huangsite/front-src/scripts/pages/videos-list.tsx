@@ -4,7 +4,7 @@ import {
 import * as React from "react";
 import { SingleVideo } from "../components/single-video";
 import { VideoPlayerModal } from "../components/video-player-modal";
-import { post } from "../utils/ajax";
+import { get } from "../utils/ajax";
 import { domRect } from "../utils/dom-rect";
 export interface VideoDescription {
   url: string;
@@ -73,7 +73,7 @@ export class VideosList extends React.Component<{}, VideosListState> {
   }
 
   public getVideos(): void {
-    post("/make_video_post/get_videos").then(data => {
+    get("/make_video_post/get_videos").then(data => {
       this.setState({
         videos: data.content.videos.map(v => ({
           updateTime: v.update_time,

@@ -1,4 +1,4 @@
-import { CanvasDrawable } from "../../../../canvas-drawable/src/index";
+import { CanvasDrawable } from "canvas-drawable";
 const canvas: HTMLCanvasElement = document.getElementById("canvas") as HTMLCanvasElement;
 const erase = document.getElementById("erase");
 const draw = document.getElementById("draw");

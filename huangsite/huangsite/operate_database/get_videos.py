@@ -10,9 +10,9 @@ def get_videos():
     for doc in cursor:
       print(doc)
       docs.append({
-        'url': doc['url'],
-        'id': str(doc['_id']),
-        'update_time': doc['update_time']
+        'url': doc.get('url'),
+        'id': str(doc.get('_id')),
+        'update_time': doc.get('update_time')
       })
 
     return docs
