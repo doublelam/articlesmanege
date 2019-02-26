@@ -96,7 +96,7 @@ export class SetStylesModal extends React.Component<SetStylesModalProps, SetStyl
       key: val => val,
       label: (value): JSX.Element => <div style={{ width: "100%" }}>
         <div style={{
-          backgroundColor: value,
+          backgroundColor: String(value),
           borderRadius: 3,
           color: "#eee",
           display: "inline-block",

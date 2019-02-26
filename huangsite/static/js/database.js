@@ -60,21 +60,21 @@
 /******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 210);
+/******/ 	return __webpack_require__(__webpack_require__.s = 206);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 210:
+/***/ 206:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var recursive_methods_1 = __webpack_require__(73);
-var ajax_1 = __webpack_require__(60);
-var domOperate_1 = __webpack_require__(211);
-var getdom_1 = __webpack_require__(76);
+var recursive_methods_1 = __webpack_require__(71);
+var ajax_1 = __webpack_require__(47);
+var domOperate_1 = __webpack_require__(207);
+var getdom_1 = __webpack_require__(74);
 var OperateDatabase = /** @class */ (function () {
     function OperateDatabase() {
         this.liContainer = getdom_1.ele("#list-container");
@@ -116,7 +116,7 @@ main();
 
 /***/ }),
 
-/***/ 211:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,7 +133,7 @@ exports.removeAll = function (container) {
 
 /***/ }),
 
-/***/ 60:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -182,7 +182,7 @@ var CONTENT_MAP = {
 
 /***/ }),
 
-/***/ 73:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -191,13 +191,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(74));
-__export(__webpack_require__(75));
+__export(__webpack_require__(72));
+__export(__webpack_require__(73));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 74:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -239,7 +239,7 @@ exports.fibonacciArr = function (n) {
 
 /***/ }),
 
-/***/ 75:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -305,6 +305,23 @@ exports.extreme = function (func, list) {
  * @param func
  * @param list
  */
+exports.extremeWithRest = function (func, list) {
+    var extremeWithRestI = function (ext, rest, fun, arr) {
+        if (!arr.length) {
+            return [ext, rest];
+        }
+        var _a = func(arr[0], ext) ?
+            [ext, rest.concat(arr[0])] :
+            [arr[0], rest.concat(ext)], newExt = _a[0], newRest = _a[1];
+        return extremeWithRestI(newExt, newRest, fun, arr.slice(1));
+    };
+    return extremeWithRestI(list[0], [], func, list.slice(1));
+};
+/**
+ *
+ * @param func
+ * @param list
+ */
 exports.whileis = function (func, list) {
     var whileisI = function (sumArr, fun, li) {
         if (!fun(li[0]) || li.length <= 0) {
@@ -342,12 +359,12 @@ exports.sorter = function (func, list) {
         return [];
     }
     var sorterI = function (sumArr, fun, li) {
-        var extremeVal = exports.extreme(function (a, b) { return !fun(a, b); }, li);
-        var val = sumArr.concat([extremeVal]);
+        var extremeVals = exports.extremeWithRest(function (a, b) { return fun(a, b); }, li);
+        var val = sumArr.concat([extremeVals[0]]);
         if (li.length <= 1) {
             return val;
         }
-        return sorterI(val, fun, exports.drop(function (v) { return v === extremeVal; }, li));
+        return sorterI(val, fun, extremeVals[1]);
     };
     return sorterI([], func, list);
 };
@@ -521,7 +538,7 @@ exports.deduplicate = function (list) {
 
 /***/ }),
 
-/***/ 76:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

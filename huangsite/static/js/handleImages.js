@@ -60,18 +60,18 @@
 /******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1420);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1430);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1420:
+/***/ 1430:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var Whammy = __webpack_require__(1421);
+var Whammy = __webpack_require__(1431);
 var HandleImages = /** @class */ (function () {
     function HandleImages() {
         this.it = self;
@@ -121,7 +121,7 @@ main();
 
 /***/ }),
 
-/***/ 1421:
+/***/ 1431:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {/*
@@ -553,10 +553,10 @@ global.Whammy = (function(){
 	WhammyVideo.prototype.add = function(frame, duration){
 		if(typeof duration != 'undefined' && this.duration) throw "you can't pass a duration if the fps is set";
 		if(typeof duration == 'undefined' && !this.duration) throw "if you don't have the fps set, you ned to have durations here."
-		if('canvas' in frame){ //CanvasRenderingContext2D
+		if(typeof frame ===  'object' && 'canvas' in frame){ //CanvasRenderingContext2D
 			frame = frame.canvas;	
 		}
-		if('toDataURL' in frame){
+		if(typeof frame ===  'object' && 'toDataURL' in frame){
 			frame = frame.toDataURL('image/webp', this.quality)
 		}else if(typeof frame != "string"){
 			throw "frame must be a a HTMLCanvasElement, a CanvasRenderingContext2D or a DataURI formatted string"
@@ -594,7 +594,7 @@ global.Whammy = (function(){
 
 if (typeof process !== 'undefined') module.exports = Whammy;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(66), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(41), __webpack_require__(3)))
 
 /***/ }),
 
@@ -789,7 +789,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 66:
+/***/ 41:
 /***/ (function(module, exports) {
 
 var g;

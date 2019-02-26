@@ -1,5 +1,6 @@
 {
   "python.jediEnabled": false,
   "python.pythonPath": "/usr/local/bin/python3",
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "python.linting.pylintEnabled": true
 }

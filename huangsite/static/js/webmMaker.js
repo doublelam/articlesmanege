@@ -60,23 +60,23 @@
 /******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 213);
+/******/ 	return __webpack_require__(__webpack_require__.s = 209);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 213:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
 /* require sass */
-__webpack_require__(214);
-var canvas_drawable_1 = __webpack_require__(46);
-var getdom_1 = __webpack_require__(76);
-var reset_canvas_1 = __webpack_require__(77);
-var reset_container_1 = __webpack_require__(215);
+__webpack_require__(210);
+var canvas_drawable_1 = __webpack_require__(48);
+var getdom_1 = __webpack_require__(74);
+var reset_canvas_1 = __webpack_require__(75);
+var reset_container_1 = __webpack_require__(211);
 var WebmMaker = /** @class */ (function () {
     function WebmMaker() {
         this.getEles();
@@ -112,14 +112,14 @@ webmmaker.main();
 
 /***/ }),
 
-/***/ 214:
+/***/ 210:
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Missing binding /Users/donlin/Desktop/articlesmanege/node_modules/node-sass/vendor/darwin-x64-64/binding.node\nNode Sass could not find a binding for your current environment: OS X 64-bit with Node.js 10.x\n\nFound bindings for the following environments:\n  - OS X 64-bit with Node.js 8.x\n\nThis usually happens because your environment has changed since running `npm install`.\nRun `npm rebuild node-sass` to download the binding for your current environment.\n    at module.exports (/Users/donlin/Desktop/articlesmanege/node_modules/node-sass/lib/binding.js:15:13)\n    at Object.<anonymous> (/Users/donlin/Desktop/articlesmanege/node_modules/node-sass/lib/index.js:14:35)\n    at Module._compile (internal/modules/cjs/loader.js:689:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)\n    at Module.load (internal/modules/cjs/loader.js:599:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:530:3)\n    at Module.require (internal/modules/cjs/loader.js:637:17)\n    at require (internal/modules/cjs/helpers.js:22:18)\n    at Object.<anonymous> (/Users/donlin/Desktop/articlesmanege/node_modules/sass-loader/lib/loader.js:3:14)\n    at Module._compile (internal/modules/cjs/loader.js:689:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)\n    at Module.load (internal/modules/cjs/loader.js:599:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:530:3)\n    at Module.require (internal/modules/cjs/loader.js:637:17)\n    at require (internal/modules/cjs/helpers.js:22:18)\n    at loadLoader (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/loadLoader.js:18:17)\n    at iteratePitchingLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at NormalModule.doBuild (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/Compilation.js:157:10)\n    at moduleFactory.create (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/Compilation.js:460:10)\n    at factory (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModuleFactory.js:243:5)\n    at applyPluginsAsyncWaterfall (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModuleFactory.js:94:13)\n    at runLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:172:11\n    at loadLoader (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/loadLoader.js:32:11)\n    at iteratePitchingLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/Users/donlin/Desktop/articlesmanege/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at NormalModule.doBuild (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/Compilation.js:157:10)\n    at moduleFactory.create (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/Compilation.js:460:10)\n    at factory (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModuleFactory.js:243:5)\n    at applyPluginsAsyncWaterfall (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModuleFactory.js:94:13)\n    at /Users/donlin/Desktop/articlesmanege/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/Users/donlin/Desktop/articlesmanege/node_modules/tapable/lib/Tapable.js:272:13)\n    at resolver (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModuleFactory.js:69:10)\n    at process.nextTick (/Users/donlin/Desktop/articlesmanege/node_modules/webpack/lib/NormalModuleFactory.js:196:7)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
 
 /***/ }),
 
-/***/ 215:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -154,170 +154,14 @@ exports.resetContainer = function (dom) {
 
 /***/ }),
 
-/***/ 46:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 48:
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__judge_end__ = __webpack_require__(47);
-
-class CanvasDrawable {
-    constructor(canvasContext, opt = {
-            color: "rgba(0,0,0,.5)",
-            width: 1,
-        }) {
-        this.lastPoint = [0, 0];
-        this.lastEndPoint = [0, 0];
-        this.paddingAndBorder = [0, 0];
-        this.domPosition = [0, 0];
-        this.drawScale = 1;
-        this.pointMode = "DRAW";
-        this.innerWidthAndHeight = [0, 0];
-        this.canvasContext = canvasContext;
-        this.pointStyle = opt;
-        this.bandMethods();
-        this.getCanvasPaddingAndBorder(canvasContext);
-    }
-    native(type, ...opt) {
-        this.canvasContext[type](...opt);
-        return this;
-    }
-    nativeContext() {
-        return this.canvasContext;
-    }
-    setStyle(option) {
-        this.pointStyle = option;
-        return this;
-    }
-    getStyle() {
-        return this.pointStyle;
-    }
-    cleanAll() {
-        this.canvasContext.clearRect(0, 0, this.innerWidthAndHeight[0], this.innerWidthAndHeight[1]);
-    }
-    getCanvasBase64(...args) {
-        return this.canvasContext.canvas.toDataURL(...args);
-    }
-    getCanvasBlob(...args) {
-        return new Promise((resolve, reject) => {
-            this.canvasContext.canvas.toBlob((blob) => {
-                resolve(blob);
-            }, ...args);
-        });
-    }
-    enerase() {
-        this.pointMode = "ERASE";
-        return this;
-    }
-    endraw() {
-        this.pointMode = "DRAW";
-        return this;
-    }
-    setCanvasStroke() {
-        this.canvasContext.strokeStyle = this.pointStyle.color;
-        this.canvasContext.lineWidth = this.pointStyle.width;
-    }
-    getCanvasPaddingAndBorder(canvasContext) {
-        const styles = getComputedStyle(canvasContext.canvas);
-        const canvasRect = canvasContext.canvas.getBoundingClientRect();
-        this.domPosition = [canvasRect.left, canvasRect.top];
-        this.paddingAndBorder = [
-            parseFloat(styles.paddingLeft) + parseFloat(styles.borderLeftWidth),
-            parseFloat(styles.paddingTop) + parseFloat(styles.borderTopWidth),
-        ];
-        this.innerWidthAndHeight = [
-            this.canvasContext.canvas.clientWidth,
-            this.canvasContext.canvas.clientHeight,
-        ];
-    }
-    recalculateCoordination(coordinate) {
-        return [
-            coordinate[0] - this.domPosition[0] - this.paddingAndBorder[0],
-            coordinate[1] - this.domPosition[1] - this.paddingAndBorder[1],
-        ];
-    }
-    bandMethods() {
-        const can = this.canvasContext.canvas;
-        if (__WEBPACK_IMPORTED_MODULE_0__judge_end__["a" /* ifMobile */]) {
-            can.ontouchstart = e => {
-                const reCoordinate = this.recalculateCoordination([e.touches[0].clientX, e.touches[0].clientY]);
-                this.touched(reCoordinate[0], reCoordinate[1]);
-            };
-            can.ontouchmove = e => {
-                const reCoordinate = this.recalculateCoordination([e.touches[0].clientX, e.touches[0].clientY]);
-                this.moveWhenErase(reCoordinate[0], reCoordinate[1]);
-                this.moveWhenDraw(reCoordinate[0], reCoordinate[1]);
-            };
-            return this;
-        }
-        can.onmousedown = e => {
-            const reCoordinate = this.recalculateCoordination([e.clientX, e.clientY]);
-            this.touched(reCoordinate[0], reCoordinate[1]);
-        };
-        can.onmousemove = e => {
-            if (e.buttons <= 0) {
-                return;
-            }
-            const reCoordinate = this.recalculateCoordination([e.clientX, e.clientY]);
-            this.moveWhenErase(reCoordinate[0], reCoordinate[1]);
-            this.moveWhenDraw(reCoordinate[0], reCoordinate[1]);
-        };
-        return this;
-    }
-    touched(x, y) {
-        this.lastPoint = [x, y];
-        this.lastEndPoint = [x, y];
-        this.setCanvasStroke();
-    }
-    moveWhenErase(x, y, width = 10) {
-        if (this.pointMode !== "ERASE") {
-            return;
-        }
-        const halfSide = width / 2;
-        const startPoint = [x - halfSide, y - halfSide];
-        this.canvasContext.clearRect(startPoint[0], startPoint[1], width, width);
-    }
-    moveWhenDraw(x, y, scale = this.drawScale) {
-        if (this.pointMode !== "DRAW") {
-            return;
-        }
-        this.canvasContext.beginPath();
-        this.canvasContext.moveTo(this.lastEndPoint[0], this.lastEndPoint[1]);
-        const endPoint = [
-            (x - this.lastPoint[0]) * scale + this.lastEndPoint[0],
-            (y - this.lastPoint[1]) * scale + this.lastEndPoint[1],
-        ];
-        this.canvasContext.lineTo(endPoint[0], endPoint[1]);
-        this.canvasContext.stroke();
-        this.canvasContext.closePath();
-        this.lastPoint = [x, y];
-        this.lastEndPoint = endPoint;
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["CanvasDrawable"] = CanvasDrawable;
-
-//# sourceMappingURL=index.js.map
+throw new Error("Module parse failed: Unexpected token (29:12)\nYou may need an appropriate loader to handle this file type.\n|     setStyle(option) {\n|         this.pointStyle = {\n|             ...this.pointStyle,\n|             ...option,\n|         };");
 
 /***/ }),
 
-/***/ 47:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const ifHasTouch = () => {
-    if (window.ontouchstart !== void 0) {
-        return true;
-    }
-    return false;
-};
-const ifMobile = ifHasTouch();
-/* harmony export (immutable) */ __webpack_exports__["a"] = ifMobile;
-
-//# sourceMappingURL=judge-end.js.map
-
-/***/ }),
-
-/***/ 76:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -328,7 +172,7 @@ exports.ele = function (query) { return document.querySelector(query); };
 
 /***/ }),
 
-/***/ 77:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

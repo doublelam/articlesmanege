@@ -17,7 +17,7 @@ def get_objects(name_space, find, sort):
     client = MongoClient()
     db = client['common_db']
     collection = db[name_space]
-    print('find',find,'sort', sort)
+    print('find', find, 'sort', sort)
     cursor = collection.find(filter=find, sort=sort)
     client.close()
     return list(cursor)
@@ -29,3 +29,12 @@ def delete_object(name_space, id):
     collection = db[name_space]
     collection.delete_one({'_id': ObjectId(id)})
     client.close()
+
+
+def update_object(name_space, id, update_content):
+    client =MongoClient()
+    db = client['common_db']
+    collection = db[name_space]
+    rslt = collection.update_one({'_id': ObjectId(id)}, {'$set': update_content})
+    client.close()
+    return rslt
